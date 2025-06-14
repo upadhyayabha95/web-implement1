@@ -1,53 +1,57 @@
+# This repository has been created to demonstrate how to first Develop and test a full-stack website on local machine and then host it on web.
+
 ## 📦 The Organization of this repository:-
 
 ```
 project-root/
 ├── docs/                  # Contains the fronend hosting files
-│   └── index.html
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+
 ├── render-backend/        # Contains the backend hosting files
-│   ├── index.js
 │   ├── package.json
-│   └── readme.md
+│   ├── package-lock.json
+│   └── server.js
 ├── readme.md              # This file
 
 ```
-## 🔧 First Start the Backend Server:-
-We are hosting the backend server on "Render: Cloud Application Platform". How to do that?
 
-- Go to [render](https://render.com/)
-- Sign In using your GitHub credentials
-- Add New "Web Service"
-- Choose the "Public Git Repository" option
-- Copy-paste your GitRepo (this) URL and click 'Connect'
-- Set "Root Directory": "render-backend"
-- Set "Build Command": "npm install"
-- Set "Start Command": "npm start"
-- Select "Instance Type": "Free"
-- Click "Deploy Web Service"
+## How to test it on local machine:-
+### Prerequisite 
+- Nodejs : for server-side scripting, supporting requirement for ganache etc.
+- VSCode : editor for solidity etc.
+- LiveServer : for hosting web-server
+
+### Testing Steps
+- download the repo.
+- open the 'script.js' and change the API-URL with your machine's IP adress (or loopback address) in this line:-
+
+  `fetch("https://websitewithbackend-v2.onrender.com/calculate", {`
+- like this:-
+
+  `fetch("http://172.26.23.122:10000/calculate", {`
+    - use your IP in the above (or loopback address)
+    - note that we have replaced 'https' by 'http' . Why? Investigate by yourself.
+- open the index.html in a browser
+- go to the "render-backend" folder and run the following commands:-
   
-After deployment finishes, you'll see you’ll get a public API URL like this:
-`https://websitewithbackend.onrender.com`
-
-## 🔧 Now How to Host the Frontend:-
-
-First, edit the `index.html` kept inisde the "/docs" folder:-
-
-  - Find the line: `const apiUrl = 'https://websitewithbackend.onrender.com/api/calculate';`
-  - Replace the above URL with your actual backend API URL (see the previous step)
-  - Note that `/api/calculate` must be there at the end of the URL (to know why see line no. 08 in `index.js` inside the "/render-backend" folder
-  - Commit the changes
-
-The frontend is hosted by GitHub. How to do that?
-
-  - In the GitHub "Repository Settings", nevigate to: 'Code and automation' → 'Pages'
-  -  Select Source: "Deploy from a branch"
-  - Select Branch: "main"
-  - Select folder: "/docs"
-  - Click Save
-
-The frontend will be deployed by GitHub. The URL of the deployed site will be displayed on the top of the above settings page.
+   `npm init -y`
+  
+    `npm install express cors body-parser`
+  
+    `node server.js`
+  
+- Now it is deployed at your local machine - test it on the browser you opened in the above step.
+- if you want to access your webiste from another machine on the same network (intranet):-
+  - host the fronend on your machine using some web-hosting application (you may use "LiveServer" using which you can deploy easily from Visual Studio)
+  - access the site using the following url on browser from any other machine on the same network:
+ 
+    `http://172.26.23.122:5500/index.html`
+    - use your IP in the above (or loopback address)
+  - note that "LiveServer" hosts the web-application in port-no. 5500. For other web-hosting applications, port no. may be different
 
 
+## Deployment Guidelines:-
 
-
-
+Same as main branch: ([main branch](https://github.com/SMaityCodes/WebSiteWithBackEnd.git))
