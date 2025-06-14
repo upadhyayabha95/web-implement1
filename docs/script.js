@@ -3,7 +3,7 @@ function calculate() {
     let num2 = parseFloat(document.getElementById("num2").value);
     let operator = document.getElementById("operator").value;
 
-    fetch("http://192.168.1.168:10000/calculate", {
+    fetch("https://web-implement1-1.onrender.com/data/calculate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ num1, num2, operator })
